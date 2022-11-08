@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hotel/screens/post_screen.dart';
 
 import '../widgets/home_app_bar.dart';
 import '../widgets/home_bottom_bar.dart';
@@ -16,13 +17,15 @@ class Homepage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(90.0),
+        preferredSize: const Size.fromHeight(90.0),
         child: HomeAppBar(),
       ),
       body: SafeArea(
+          child: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 30),
+          padding: const EdgeInsets.symmetric(vertical: 30),
           child: Column(
             children: [
               Row(
@@ -36,11 +39,16 @@ class Homepage extends StatelessWidget {
                         shrinkWrap: true,
                         itemBuilder: (BuildContext context, int index) {
                           return InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => PostScreen()));
+                            },
                             child: Container(
                               width: 160,
-                              padding: EdgeInsets.all(20),
-                              margin: EdgeInsets.only(left: 15),
+                              padding: const EdgeInsets.all(20),
+                              margin: const EdgeInsets.only(left: 15),
                               decoration: BoxDecoration(
                                 color: Colors.black,
                                 borderRadius: BorderRadius.circular(15),
@@ -55,16 +63,16 @@ class Homepage extends StatelessWidget {
                                 children: [
                                   Container(
                                     alignment: Alignment.topRight,
-                                    child: Icon(
+                                    child: const Icon(
                                       Icons.bookmark_border_outlined,
                                       color: Colors.white,
                                       size: 30,
                                     ),
                                   ),
-                                  Spacer(),
+                                  const Spacer(),
                                   Container(
                                     alignment: Alignment.bottomLeft,
-                                    child: Text(
+                                    child: const Text(
                                       "Khach San",
                                       style: TextStyle(
                                         color: Colors.white,
@@ -81,7 +89,7 @@ class Homepage extends StatelessWidget {
                   )),
                 ],
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Padding(
@@ -95,7 +103,7 @@ class Homepage extends StatelessWidget {
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(10),
-                            boxShadow: [
+                            boxShadow: const [
                               BoxShadow(
                                 color: Colors.black26,
                                 blurRadius: 4,
@@ -105,7 +113,7 @@ class Homepage extends StatelessWidget {
                           child: Text(
                             category[i],
                             //"Best Places",
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.w500,
                             ),
@@ -126,7 +134,12 @@ class Homepage extends StatelessWidget {
                       child: Column(
                         children: [
                           InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => PostScreen()));
+                            },
                             child: Container(
                               height: 200,
                               decoration: BoxDecoration(
@@ -145,7 +158,7 @@ class Homepage extends StatelessWidget {
                             padding: EdgeInsets.only(top: 10),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
+                              children: const [
                                 Text(
                                   "Khach San Name",
                                   style: TextStyle(
@@ -159,7 +172,7 @@ class Homepage extends StatelessWidget {
                           ),
                           SizedBox(height: 5),
                           Row(
-                            children: [
+                            children: const [
                               Icon(
                                 Icons.star,
                                 color: Colors.amber,
@@ -180,8 +193,8 @@ class Homepage extends StatelessWidget {
             ],
           ),
         ),
-      ),
-      // bottomNavigationBar: HomeBottomBar(),
+      )),
+      bottomNavigationBar: HomeBottomBar(),
     );
   }
 }
